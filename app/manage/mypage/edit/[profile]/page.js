@@ -1,4 +1,13 @@
 'use client'
 export default function Page({params}) {
-  return <p>Post: {params.profile}</p>
+  return (
+  <div>
+    <div>
+    Post: {params.profile}
+    </div>
+    <div>
+      
+    </div>
+  </div>
+    )
 }

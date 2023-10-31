@@ -4,7 +4,7 @@ export default function Contact(props) {
         <a href={url} target='_blank' className='p-0'>
             <div className={`
             bg-[#ebebeb]
-            py-4 
+            py-5
             my-1
             text-lg
             text-center
