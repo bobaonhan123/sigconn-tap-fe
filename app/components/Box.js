@@ -7,12 +7,7 @@ import Link from "next/link";
 export default function Box(props) {
   const { img, name, id } = props.data;
   let isChoosen = props.isChoosen;
-  let pathname="";
-  if (typeof window !== 'undefined') {
-    pathname = window.location.pathname;
-  }
-  console.log(hostname)
-  console.log(pathname)
+  
   return (
     <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer" onClick={props.click}>
       <img src={img} alt={name} className='h-[75%] w-full object-cover rounded-3xl' />
