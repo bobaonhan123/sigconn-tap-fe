@@ -27,7 +27,9 @@ export default function Login() {
         }
         else{
         console.log(data.access_token);
+          if (typeof window !== 'undefined') {
         localStorage.setItem("access-token",data.access_token);
+          }
         router.push("/manage/mypage");
         }
       })
