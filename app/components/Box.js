@@ -1,6 +1,5 @@
 'use client'
 
-import { data } from "autoprefixer";
 import { hostname } from "../config/location";
 import Link from "next/link";
 

@@ -69,7 +69,22 @@ const data = [
   },
 ];
 export default function Page({ params }) {
-  const info = data[params.profile];
+  const info = {
+    id: 3,
+    name: "Hồ Sỹ Bảo Nhân",
+    slogan: "Một thằng IT biết cài win và sửa mạng",
+    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    contact: [
+      {
+        name: "Facebook",
+        url: "https://www.facebook.com/hosybaonhan",
+      },
+      {
+        name: "Github",
+        url: "https://github.com/bobaonhan123",
+      },
+    ],
+  }
   return (
     <div className="h-[90vh] flex">
       <div className=" w-[50%] mx-[4%] my-[5%] h-full">
@@ -82,32 +97,32 @@ export default function Page({ params }) {
           <div className="mb-5">
             <img
               src={info.img}
-              className={`rounded-full
+              className='rounded-full
                           h-32 
                           w-32 
                           object-cover 
                           w-20 
                           h-20 mx-auto 
-                          mt-10`}
+                          mt-10'
             />
             <h1
-              className={`
+              className='
               text-xl text-center
               mt-4
               text-gray-700
               font-semibold
               uppercase
               
-              `}
+              '
             >
               {info.name}
             </h1>
             <h2
-              className={`
+              className='
               text-center
               font-semibold
               text-gray-500
-              `}
+              '
             >
               {info.slogan}
             </h2>
@@ -116,7 +131,8 @@ export default function Page({ params }) {
             {
               info.contact.map((item, index) => {
                 return (
-                  <Contact key={index} data={item} />
+                  // {<Contact key={index} data={item} />}
+                  <></>
                 )
               })
             }
