@@ -1,13 +1,12 @@
 'use client'
 import { useState } from "react"
 import Link from "next/link";
-import { redirect } from 'next/navigation';
-import { useRouter } from "next/navigation";
+// import { redirect } from 'next/navigation';
+// import { useRouter } from "next/navigation";
 import { http } from "@/app/config/AxiosCFG";
 import Alert from "@/app/components/Alert";
-import axios from "axios";
 export default function Login() {
-  const router = useRouter();
+  // const router = useRouter();
   const [username, setUsername] = useState("");
   function handleUsername(e) {
     setUsername(e.target.value);
@@ -27,10 +26,13 @@ export default function Login() {
         }
         else {
           console.log(data.access_token);
-          if (typeof window !== 'undefined') {
+          if (typeof localStorage !== 'undefined') {
             localStorage.setItem("access-token", data.access_token);
           }
-          router.push("/manage/mypage");
+          // router.push("/manage/mypage");
+          if (typeof window !== 'undefined') {
+            window.location.pathname = '/manage/mypage'
+          }
         }
       })
       .catch((error) => {

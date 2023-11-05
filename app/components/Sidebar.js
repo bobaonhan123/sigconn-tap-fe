@@ -2,10 +2,10 @@
 
 import { memo, useState } from "react";
 import { http } from "../config/AxiosCFG";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 function Sidebar() {
   const [name, setName] = useState("");
-  const router=useRouter()
+  //const router=useRouter()
   let token='';
   if (typeof localStorage !== 'undefined') {
     token = localStorage.getItem("access-token");
@@ -22,7 +22,7 @@ function Sidebar() {
     .catch((error) => {
       //router.push("/manage/login");
       if (typeof window !== 'undefined') {
-        window.location.href='/'
+        window.location.pathname='/'
       }
     });
   return (
