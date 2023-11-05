@@ -9,8 +9,9 @@ import { useRouter } from "next/navigation";
 function Sidebar() {
   const [name, setName] = useState("");
   const router=useRouter()
+  let token='';
   if (typeof window !== 'undefined') {
-  let token = localStorage.getItem("access-token");
+  token = localStorage.getItem("access-token");
   }
   http
     .get("auth/name", {

@@ -21,16 +21,16 @@ export default function Login() {
     http.post(`auth/login?email=${username}&password=${password}`)
       .then((res) => res.data)
       .then((data) => {
-        if(data.error=="Unauthorized") {
+        if (data.error == "Unauthorized") {
           console.log(data)
           setAlert(true)
         }
-        else{
-        console.log(data.access_token);
+        else {
+          console.log(data.access_token);
           if (typeof window !== 'undefined') {
-        localStorage.setItem("access-token",data.access_token);
+            localStorage.setItem("access-token", data.access_token);
           }
-        router.push("/manage/mypage");
+          router.push("/manage/mypage");
         }
       })
       .catch((error) => {
@@ -55,7 +55,7 @@ export default function Login() {
         </div>
         <button className='my-2 w-1/4 h-12 rounded-sm pl-2 text-white bg-sky-500 mt-10' onClick={handleLogin}>Đăng nhập</button>
       </div>
-      {isAlert&&<Alert onClick={()=>setAlert(false)}/>}
+      {isAlert && <Alert onClick={() => setAlert(false)} />}
     </main>
   )
 }
