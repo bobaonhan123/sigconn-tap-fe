@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import logo from "@/app/img/logo.png";
 import name from "@/app/img/name.png";
 import Image from "next/image";

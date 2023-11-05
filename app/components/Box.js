@@ -1,18 +1,15 @@
 'use client'
 
 import { data } from "autoprefixer";
+import { hostname } from "../config/location";
 import Link from "next/link";
 
 export default function Box(props) {
   const { img, name, id } = props.data;
   let isChoosen = props.isChoosen;
-  let hostname="";
   let pathname="";
-  let port=""
   if (typeof window !== 'undefined') {
-    hostname = window.location.hostname;
     pathname = window.location.pathname;
-    port=window.location.port
   }
   console.log(hostname)
   console.log(pathname)
@@ -21,7 +18,7 @@ export default function Box(props) {
       <img src={img} alt={name} className='h-[75%] w-full object-cover rounded-3xl' />
       <div className="h-[20%] w-[100%] mt-2 px-5">
         <h2 className="text-gray-800 font-semibold text-lg p-0">{name}</h2>
-        <p className="text-gray-500 text-sm p-0">{hostname +":"+port+'/' + id}</p>
+        <p className="text-gray-500 text-sm p-0">{hostname+'/' + id}</p>
       </div>
       { !isChoosen && <div className= {`relative 
         h-full 
@@ -37,7 +34,7 @@ export default function Box(props) {
         justify-evenly
         `}>
         <Link href={'/' + id } className={`text-white w-[55%] bg-[#003842] text-center rounded-full py-[3%]`}>Xem</Link>
-        <Link href={pathname + '/edit/'+id}
+        <Link href={'/manage/mypage/edit/'+id}
          className={`text-white w-[55%] bg-[#737373] text-center rounded-full py-[3%]`}><div className="">Sửa</div></Link>
         <button
          className={`text-white w-[55%] bg-[#5271ff] text-center rounded-full py-[3%]`}>Xóa</button>

@@ -63,6 +63,7 @@ const data = [
 
 export default function MyPage() {
   const [choosen, setChoosen] = useState(-1);
+  
   console.log(choosen)
   return (
     <main className='pt-16 px-12' onClick={() => { setChoosen(-1) }}>
