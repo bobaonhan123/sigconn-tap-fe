@@ -1,12 +1,10 @@
 'use client'
 import { redirect } from 'next/navigation';
 import { http } from '../config/AxiosCFG';
-import { data } from 'autoprefixer';
 import { useRouter } from "next/navigation";
-import { useEffect } from 'react';
 export default function Manage() {
   const router = useRouter();
-  let token;
+  let token='';
   if (typeof localStorage !== 'undefined') {
   token = localStorage.getItem('access-token');
   }
