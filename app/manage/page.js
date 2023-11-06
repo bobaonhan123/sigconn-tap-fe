@@ -1,9 +1,9 @@
 'use client'
 import { redirect } from 'next/navigation';
 import { http } from '../config/AxiosCFG';
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 export default function Manage() {
-  // const router = useRouter();
+  const router = useRouter();
   let token='';
   if (typeof localStorage !== 'undefined') {
   token = localStorage.getItem('access-token');
@@ -11,13 +11,15 @@ export default function Manage() {
   http.get("auth/name",{headers:{
     'Authorization': 'bearer ' + token
   }}).then((data)=>{
-    if (typeof window !== 'undefined') {
-      window.location.pathname = '/manage/mypage'
-    }
+    // if (typeof window !== 'undefined') {
+    //   window.location.pathname = '/manage/mypage'
+    // }
+    router.push('/manage/mypage')
   }).catch((error)=> {
-    if (typeof window !== 'undefined') {
-      window.location.pathname = '/manage/login'
-    }
+    // if (typeof window !== 'undefined') {
+    //   window.location.pathname = '/manage/login'
+    // }
+    router.push('/manage/login')
   } )
    
 }
