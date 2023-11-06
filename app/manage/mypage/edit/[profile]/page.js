@@ -87,11 +87,11 @@ export default function Page({ params }) {
   }
   return (
     <div className="h-[90vh] flex">
-      <div className=" w-[50%] mx-[4%] my-[5%] h-full">
+      <div className=" w-[40%] ml-[4%] mt-[5%] h-full">
         <div
           className={
             dosis.className +
-            " h-[80%] w-[60%] bg-white border-2 border-black rounded-2xl"
+            " h-[80%] w-[80%] bg-white border-2 border-black rounded-2xl"
           }
         >
           <div className="mb-5">
@@ -139,7 +139,7 @@ export default function Page({ params }) {
           </div>
         </div>
       </div>
-      <div className="w-[50%] m-4 h-full">
+      <div className="w-[60%] m-4 h-full">
         <div></div>
       </div>
     </div>
