@@ -1,13 +1,13 @@
 'use client'
 
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react"
 import { http } from "@/app/config/AxiosCFG";
 import Alert from "@/app/components/Alert";
 
 export default function Register() {
-  // const router=useRouter();
+  const router=useRouter();
   const [isAlert, setAlert] = useState(false);
   const [name,setName]=useState("");
     function handleName(e) {
@@ -37,9 +37,10 @@ export default function Register() {
         .then((data) => {
           console.log(data)
           if(typeof data!=="string"){
-            if (typeof window !== 'undefined') {
-              window.location.pathname = '/manage/login'
-            }
+            // if (typeof window !== 'undefined') {
+            //   window.location.pathname = '/manage/login'
+            // }
+            router.push("/manage/login");
           }
           else
             setAlert(true)
