@@ -21,10 +21,10 @@ function Sidebar() {
       setName(data.data.name)
     })
     .catch((error) => {
-      // router.push("/manage/login");
-      if (typeof window !== 'undefined') {
-        window.location.href ='/manage/login'
-      }
+      router.push("/manage/login");
+      // if (typeof window !== 'undefined') {
+      //   window.location.href ='/manage/login'
+      // }
     });
   return (
     <div className="flex-column fixed h-[90.5vh] w-[20vw] bg-[#e0fffc] left-[0.2vw] top-[9.5vh] rounded-md">
