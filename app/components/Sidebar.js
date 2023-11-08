@@ -4,8 +4,10 @@ import { memo, useState } from "react";
 import { http } from "../config/AxiosCFG";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LogoutComponent from "./LogoutComponent";
 function Sidebar() {
   const [name, setName] = useState("");
+  const [logoutVisible,setLogoutVisible]=useState(true);
   const router=useRouter()
   let token='';
   if (typeof localStorage !== 'undefined') {
@@ -35,6 +37,7 @@ function Sidebar() {
       text-center
       '>
         Xin chào <b className="cursor-pointer">{name}</b>
+        {logoutVisible && <LogoutComponent />}
       </div>
       <Link href='/manage/mypage' className='mx-0
        bg-[#5ba2ff65]

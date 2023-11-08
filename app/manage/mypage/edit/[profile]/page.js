@@ -1,6 +1,7 @@
 "use client";
 import { Dosis } from "next/font/google";
 import Contact from "@/app/components/Contact";
+import ContactEdit from "@/app/components/ContactEdit";
 const dosis = Dosis({ subsets: ["latin"] });
 const data = [
   {
@@ -98,8 +99,8 @@ export default function Page({ params }) {
             <img
               src={info.img}
               className='rounded-full
-                          h-32 
-                          w-32 
+                          h-26 
+                          w-26 
                           object-cover 
                           w-20 
                           h-20 mx-auto 
@@ -131,8 +132,7 @@ export default function Page({ params }) {
             {
               info.contact.map((item, index) => {
                 return (
-                  // {<Contact key={index} data={item} />}
-                  <></>
+                  <ContactEdit key={index} data={item} />
                 )
               })
             }
