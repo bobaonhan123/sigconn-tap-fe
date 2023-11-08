@@ -7,7 +7,7 @@ import Link from "next/link";
 import LogoutComponent from "./LogoutComponent";
 function Sidebar() {
   const [name, setName] = useState("");
-  const [logoutVisible,setLogoutVisible]=useState(true);
+  const [logoutVisible,setLogoutVisible]=useState(false);
   const router=useRouter()
   let token='';
   if (typeof localStorage !== 'undefined') {
@@ -28,15 +28,26 @@ function Sidebar() {
       //   window.location.href ='/manage/login'
       // }
     });
+
+  function handleLogoutVisible(e) {
+    e.stopPropagation()
+    setLogoutVisible(!logoutVisible)
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem("access-token");
+    }
+  }
   return (
-    <div className="flex-column fixed h-[90.5vh] w-[20vw] bg-[#e0fffc] left-[0.2vw] top-[9.5vh] rounded-md">
+    <div className="flex-column fixed h-[90.5vh] w-[20vw] bg-[#e0fffc] left-[0.2vw] top-[9.5vh] rounded-md"
+    onClick={()=>setLogoutVisible(false)}>
       <div className='
       mx-auto
       my-6
       text-xl
       text-center
       '>
-        Xin chào <b className="cursor-pointer">{name}</b>
+        Xin chào <b className="cursor-pointer"
+        onClick={handleLogoutVisible}
+        >{name}</b>
         {logoutVisible && <LogoutComponent />}
       </div>
       <Link href='/manage/mypage' className='mx-0
