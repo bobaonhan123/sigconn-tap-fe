@@ -13,15 +13,15 @@ export default function Manage() {
       'Authorization': 'bearer ' + token
     }
   }).then((data) => {
-    if (typeof window !== 'undefined') {
-      window.location.pathname = '/manage/mypage'
-    }
-    // router.push('/manage/mypage');
+    // if (typeof window !== 'undefined') {
+    //   window.location.pathname = '/manage/mypage'
+    // }
+    router.push('/manage/mypage');
   }).catch((error) => {
-    if (typeof window !== 'undefined') {
-      window.location.pathname = '/manage/login'
-    }
-    // router.push('/manage/login')
+    // if (typeof window !== 'undefined') {
+    //   window.location.pathname = '/manage/login'
+    // }
+    router.push('/manage/login')
   })
 
 }
