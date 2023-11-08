@@ -23,5 +23,5 @@ export default function Manage() {
     // }
     router.push('/manage/login')
   })
-
+  
 }

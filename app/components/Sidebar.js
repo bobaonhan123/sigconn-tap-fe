@@ -31,11 +31,9 @@ function Sidebar() {
 
   function handleLogoutVisible(e) {
     e.stopPropagation()
-    setLogoutVisible(!logoutVisible)
-    if (typeof localStorage !== 'undefined') {
-      localStorage.removeItem("access-token");
-    }
+    setLogoutVisible(!logoutVisible);
   }
+
   return (
     <div className="flex-column fixed h-[90.5vh] w-[20vw] bg-[#e0fffc] left-[0.2vw] top-[9.5vh] rounded-md"
     onClick={()=>setLogoutVisible(false)}>
