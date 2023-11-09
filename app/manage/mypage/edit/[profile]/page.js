@@ -92,7 +92,7 @@ export default function Page({ params }) {
         <div
           className={
             dosis.className +
-            " h-[80%] w-[80%] bg-white border-2 border-black rounded-2xl"
+            " h-[80%] w-[80%] bg-white border-2 border-black rounded-2xl overflow-auto"
           }
         >
           <div className="mb-5">
@@ -136,11 +136,39 @@ export default function Page({ params }) {
                 )
               })
             }
+            <div className='
+            bg-[#a8b8ff]
+            py-4
+            my-1
+            text-lg
+            text-center
+            rounded-md
+            mx-auto
+            w-[98.5%]
+            cursor-pointer
+            '>
+              +
+            </div>
           </div>
         </div>
       </div>
-      <div className="w-[60%] m-4 h-full">
-        <div></div>
+      <div className="w-[60%] m-4 h-full flex flex-col">
+        <div className='
+        w-full
+        h-[85%]
+        bg-white
+        '>
+        </div>
+        <button className='
+        bg-[#939cf1]
+        text-white
+        text-lg
+        py-1
+        px-14
+        rounded-full
+        mr-6
+        ml-auto
+        '>LƯU</button>
       </div>
     </div>
   );

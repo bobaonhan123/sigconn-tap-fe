@@ -11,6 +11,7 @@ export default function ContactEdit(props) {
             rounded-md
             mx-auto
             w-[98.5%]
+            cursor-pointer
             '>
                 {name}
             </div>
