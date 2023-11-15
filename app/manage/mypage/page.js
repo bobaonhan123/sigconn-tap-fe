@@ -62,20 +62,20 @@ const data = [
 ];
 
 export default function MyPage() {
-  const [choosen, setChoosen] = useState(-1);
+  const [option, setOption] = useState(-1);
   
-  console.log(choosen)
+  console.log(option)
   return (
-    <main className='pt-16 px-12' onClick={() => { setChoosen(-1) }}>
+    <main className='pt-16 px-12' onClick={() => { setOption(-1) }}>
       <h1 className='text-3xl font-medium font-montserrat'>Danh thiếp của bạn</h1>
       <hr className='h-[1px] border-none bg-slate-900 rounded-sm relative bottom-[-1.3rem] z-0 mt-6' />
       <button className='bg-[#cfefff] py-2 px-10 rounded-full z-10 relative mb-6'>Tạo mới</button>
       <div className="grid grid-cols-3 gap-y-10">
         {data.map((item, index) => {
           return (
-            <Box key={index} data={item} isChoosen={index !== choosen} click={(e) => {
+            <Box key={index} data={item} isSelected={index !== option} click={(e) => {
               e.stopPropagation()
-              setChoosen(index);
+              setOption(index);
             }} />
           )
         })}

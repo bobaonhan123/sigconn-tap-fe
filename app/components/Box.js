@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Box(props) {
   const { img, name, id } = props.data;
-  let isChoosen = props.isChoosen;
+  let isSelected = props.isSelected;
   
   return (
     <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer" onClick={props.click}>
@@ -14,7 +14,7 @@ export default function Box(props) {
         <h2 className="text-gray-800 font-semibold text-lg p-0">{name}</h2>
         <p className="text-gray-500 text-sm p-0">{hostname+'/' + id}</p>
       </div>
-      { !isChoosen && <div className= {`relative 
+      { !isSelected && <div className= {`relative 
         h-full 
         w-full 
         top-[-98.1%] left-0 rounded-3xl bg-[#2b2b2b83] 
