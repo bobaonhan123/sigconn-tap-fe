@@ -1,18 +1,21 @@
 'use client'
 
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { http } from "../config/AxiosCFG";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LogoutComponent from "./LogoutComponent";
+import { useNamePopupStore } from "../store";
 function Sidebar() {
   const [name, setName] = useState("");
   const [logoutVisible,setLogoutVisible]=useState(false);
+  const isChanged = useNamePopupStore((state) => state.isChanged)
   const router=useRouter()
   let token='';
   if (typeof localStorage !== 'undefined') {
     token = localStorage.getItem("access-token");
   }
+  useEffect(()=>{
   http
     .get("auth/name", {
       headers: {
@@ -28,6 +31,7 @@ function Sidebar() {
       //   window.location.href ='/manage/login'
       // }
     });
+},[isChanged])
 
   function handleLogoutVisible(e) {
     e.stopPropagation()
