@@ -45,7 +45,7 @@ export default function Login() {
 
     <main className='flex flex-col h-[90vh] justify-center items-center w-screen'>
       <h1 className='text-center text-3xl font-montserrat block w-3/4'>Chào mừng trở lại</h1>
-      <div className='my-2 flex flex-col justify-around items-center w-1/2'>
+      <div className='my-2 flex flex-col justify-around items-center w-1/2 max-md:w-full'>
         <input type="text" placeholder="Tên đăng nhập" className='my-2 w-3/4 h-12 border-2 rounded-md pl-2 bg-transparent'
           value={username}
           onChange={handleUsername} />

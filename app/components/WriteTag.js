@@ -7,13 +7,18 @@ import Image from "next/image";
 export default function WriteTag() {
     const handleClose = useTagPopupStore((state) => state.toggle)
     const handleChange = useTagPopupStore((state) => state.change)
-    const [name, setName] = useState("")
-    function handleName(e) {
-        setName(e.target.value)
+    const onWrite = async (message) => {
+        try {
+            const ndef = new window.NDEFReader();
+            // This line will avoid showing the native NFC UI reader
+            await ndef.scan();
+            await ndef.write({ records: [{ recordType: "text", data: message }] });
+            alert(`Value Saved!`);
+        } catch (error) {
+            console.log(error);
+        }
     }
-    function handleSubmit() {
-        
-    }
+    onWrite("Hello world")
     return (<div className="fixed top-0 left-0 w-full h-full flex items-center justify-around bg-gray-800 bg-opacity-50 z-20"
 
     >
@@ -28,7 +33,7 @@ export default function WriteTag() {
             <div className="w-full flex flex-col items-center">
                 <p className='
             py-2 px-1 rounded-md m-2 w-full' >Đặt điện thoại của bạn lên thẻ NFC</p>
-                <Image src={logo} className='animate-pulse'/>
+                <Image src={logo} className='animate-pulse' alt="loading"/>
             </div>
         </div>
     </div>
