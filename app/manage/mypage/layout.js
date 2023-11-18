@@ -1,14 +1,17 @@
 'use client'
 import NamePopup from "@/app/components/NamePopup";
 import Sidebar from "@/app/components/Sidebar";
-import { useNamePopupStore } from "@/app/store";
+import WriteTag from "@/app/components/WriteTag";
+import { useNamePopupStore, useTagPopupStore } from "@/app/store";
 export default function MyPageLayout({ children }) {
 
-  const isVisible = useNamePopupStore((state)=>state.isVisible)
+  const isNamePopUpVisible = useNamePopupStore((state)=>state.isVisible)
+  const isWritePopUpVisible = useTagPopupStore((state) => state.isVisible)
   return (
-      <div className='pl-[21vw]'>
+      <div className='pl-[21vw] max-md:pl-0'>
         <Sidebar />
-        {isVisible && <NamePopup />}
+        {isNamePopUpVisible && <NamePopup />}
+        {isWritePopUpVisible && <WriteTag />}
         {children}
       </div>
     

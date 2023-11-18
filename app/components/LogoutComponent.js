@@ -1,9 +1,12 @@
 'use client'
+import { useRouter } from "next/navigation";
 import { useNamePopupStore } from "../store";
 export default function LogoutComponent() {
+    const router=useRouter()
     function handleLogout() {
         if (typeof localStorage !== 'undefined') {
             localStorage.removeItem("access-token");
+            router.push('/manage')
         }
     }
     const handleChangeName = useNamePopupStore((state) => state.toggle)

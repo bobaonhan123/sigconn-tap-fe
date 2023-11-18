@@ -8,39 +8,49 @@ import LogoutComponent from "./LogoutComponent";
 import { useNamePopupStore } from "../store";
 function Sidebar() {
   const [name, setName] = useState("");
-  const [logoutVisible,setLogoutVisible]=useState(false);
+  const [logoutVisible, setLogoutVisible] = useState(false);
   const isChanged = useNamePopupStore((state) => state.isChanged)
-  const router=useRouter()
-  let token='';
+  const [isVisible, setVisible] = useState(0)
+  const arr = [` max-md:left-[-80vw]`,``]
+  const router = useRouter()
+  let token = '';
   if (typeof localStorage !== 'undefined') {
     token = localStorage.getItem("access-token");
   }
-  useEffect(()=>{
-  http
-    .get("auth/name", {
-      headers: {
-        Authorization: "bearer " + token,
-      },
-    })
-    .then((data) => {
-      setName(data.data.name)
-    })
-    .catch((error) => {
-      router.push("/manage/login");
-      // if (typeof window !== 'undefined') {
-      //   window.location.href ='/manage/login'
-      // }
-    });
-},[isChanged])
+  useEffect(() => {
+    http
+      .get("auth/name", {
+        headers: {
+          Authorization: "bearer " + token,
+        },
+      })
+      .then((data) => {
+        setName(data.data.name)
+      })
+      .catch((error) => {
+        router.push("/manage/login");
+        // if (typeof window !== 'undefined') {
+        //   window.location.href ='/manage/login'
+        // }
+      });
+  }, [isChanged])
 
   function handleLogoutVisible(e) {
     e.stopPropagation()
     setLogoutVisible(!logoutVisible);
   }
 
+  function handleVisible() {
+    if(isVisible==0) setVisible(1);
+    else setVisible(0);
+  }
+
   return (
-    <div className="flex-column fixed h-[90.5vh] w-[20vw] bg-[#e0fffc] left-[0.2vw] top-[9.5vh] rounded-md"
-    onClick={()=>setLogoutVisible(false)}>
+    <div className={`flex-column fixed h-[90.5vh] w-[20vw] z-20 bg-[#e0fffc] left-[0.2vw] top-[9.5vh] rounded-md
+    max-md:w-[80vw] transition delay-200 ${arr[isVisible]}`}
+      onClick={() => setLogoutVisible(false)}>
+      <p className='absolute md:hidden text-[2rem] font-bold top-6 right-[-16px] text-blue-400'
+      onClick={handleVisible}  >{'>'}</p>
       <div className='
       mx-auto
       my-6
@@ -48,7 +58,7 @@ function Sidebar() {
       text-center
       '>
         Xin chào <b className="cursor-pointer"
-        onClick={handleLogoutVisible}
+          onClick={handleLogoutVisible}
         >{name}</b>
         {logoutVisible && <LogoutComponent />}
       </div>

@@ -2,13 +2,14 @@
 
 import { hostname } from "../config/location";
 import Link from "next/link";
+import { useTagPopupStore } from "../store";
 
 export default function Box(props) {
   const { img, name, id } = props.data;
   let isSelected = props.isSelected;
-
+  const handleWrite=useTagPopupStore((state)=>state.toggle)
   return (
-    <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer" onClick={props.click}>
+    <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer max-md:mx-2" onClick={props.click}>
       <img src={img} alt={name} className='h-[75%] w-full object-cover rounded-3xl' />
       <div className="h-[20%] w-[100%] mt-2 px-5">
         <h2 className="text-gray-800 font-semibold text-lg p-0">{name}</h2>
@@ -34,7 +35,8 @@ export default function Box(props) {
         <button
           className={`text-white w-[55%] bg-[#5271ff] text-center rounded-full py-[3%]`}>Xóa</button>
         <button
-          className={`text-white w-[55%] bg-[#ff5757] text-center rounded-full py-[3%]`}>Ghi thẻ</button>
+          className='text-white w-[55%] bg-[#ff5757] text-center rounded-full py-[3%]'
+          onClick={handleWrite}>Ghi thẻ</button>
       </div>}
     </div>
   );

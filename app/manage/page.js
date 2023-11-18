@@ -16,12 +16,16 @@ export default function Manage() {
     // if (typeof window !== 'undefined') {
     //   window.location.pathname = '/manage/mypage'
     // }
+    console.log(data)
+    if('name' in data.data) {
     router.push('/manage/mypage');
+    }
+    else router.push('/manage/login');
   }).catch((error) => {
     // if (typeof window !== 'undefined') {
     //   window.location.pathname = '/manage/login'
     // }
-    router.push('/manage/login')
+    router.push('/manage/login');
   })
   
 }
