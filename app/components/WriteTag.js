@@ -13,7 +13,7 @@ export default function WriteTag() {
             // This line will avoid showing the native NFC UI reader
             await ndef.scan();
             await ndef.write({ records: [{ recordType: "text", data: message }] });
-            alert(`Value Saved!`);
+            handleClose()
         } catch (error) {
             console.log(error);
         }

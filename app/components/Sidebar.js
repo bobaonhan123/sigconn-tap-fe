@@ -25,7 +25,9 @@ function Sidebar() {
         },
       })
       .then((data) => {
-        setName(data.data.name)
+        if (data.data.name != "")
+          setName(data.data.name)
+        else router.push("/manage/login");
       })
       .catch((error) => {
         router.push("/manage/login");

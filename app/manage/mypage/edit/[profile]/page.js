@@ -1,7 +1,9 @@
 "use client";
 import { Dosis } from "next/font/google";
-import Contact from "@/app/components/Contact";
 import ContactEdit from "@/app/components/ContactEdit";
+import { useProfile } from "@/app/store";
+import { useEffect } from "react";
+
 const dosis = Dosis({ subsets: ["latin"] });
 const data = [
   {
@@ -70,6 +72,23 @@ const data = [
   },
 ];
 export default function Page({ params }) {
+  const id = useProfile((state) => state.id);
+  const name = useProfile((state) => state.name);
+  const img = useProfile((state) => state.img);
+  const slogan = useProfile((state) => state.slogan);
+  const contact = useProfile((state) => state.contact);
+  const addContact = useProfile((state) => state.addContact);
+  const updateState = useProfile((state) => state.updateState);
+
+  const handleAdd = ()=>{
+    const newContact = { name: '', url: '' };
+    addContact(newContact);
+  }
+  useEffect(() => {
+    const newData = data[parseInt(params.profile)];
+    updateState(newData);
+    console.log(name);
+  }, [params.profile, updateState, name]);
   const info = {
     id: 3,
     name: "Hồ Sỹ Bảo Nhân",
@@ -97,7 +116,7 @@ export default function Page({ params }) {
         >
           <div className="mb-5">
             <img
-              src={info.img}
+              src={img}
               className='rounded-full
                           h-26 
                           w-26 
@@ -116,7 +135,7 @@ export default function Page({ params }) {
               
               '
             >
-              {info.name}
+              {name}
             </h1>
             <h2
               className='
@@ -125,12 +144,12 @@ export default function Page({ params }) {
               text-gray-500
               '
             >
-              {info.slogan}
+              {slogan}
             </h2>
           </div>
           <div>
             {
-              info.contact.map((item, index) => {
+              contact.map((item, index) => {
                 return (
                   <ContactEdit key={index} data={item} />
                 )
@@ -146,7 +165,9 @@ export default function Page({ params }) {
             mx-auto
             w-[98.5%]
             cursor-pointer
-            '>
+            '
+            onClick={handleAdd}
+            >
               +
             </div>
           </div>
