@@ -12,7 +12,9 @@ export default function ContactEdit(props) {
             mx-auto
             w-[98.5%]
             cursor-pointer
-            '>
+            '
+            onClick={props.onClick}
+            >
                 {name}
             </div>
     )

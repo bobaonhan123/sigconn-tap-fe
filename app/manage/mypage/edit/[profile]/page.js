@@ -2,7 +2,8 @@
 import { Dosis } from "next/font/google";
 import ContactEdit from "@/app/components/ContactEdit";
 import { useProfile } from "@/app/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import EditPanel from "@/app/components/EditPanel";
 
 const dosis = Dosis({ subsets: ["latin"] });
 const data = [
@@ -79,9 +80,8 @@ export default function Page({ params }) {
   const contact = useProfile((state) => state.contact);
   const addContact = useProfile((state) => state.addContact);
   const updateState = useProfile((state) => state.updateState);
-
-  const handleAdd = ()=>{
-    const newContact = { name: '', url: '' };
+  const handleAdd = () => {
+    const newContact = { name: '<Nhập>', url: '' };
     addContact(newContact);
   }
   useEffect(() => {
@@ -89,22 +89,7 @@ export default function Page({ params }) {
     updateState(newData);
     console.log(name);
   }, [params.profile, updateState, name]);
-  const info = {
-    id: 3,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan",
-      },
-      {
-        name: "Github",
-        url: "https://github.com/bobaonhan123",
-      },
-    ],
-  }
+  const [keyMapping,setKeyMapping]=useState('-1');
   return (
     <div className="h-[90vh] flex">
       <div className=" w-[40%] ml-[4%] mt-[5%] h-full">
@@ -124,6 +109,7 @@ export default function Page({ params }) {
                           w-20 
                           h-20 mx-auto 
                           mt-10'
+              onClick={()=>setKeyMapping((keyMapping)=>'img')}
             />
             <h1
               className='
@@ -132,8 +118,8 @@ export default function Page({ params }) {
               text-gray-700
               font-semibold
               uppercase
-              
               '
+              onClick={() => setKeyMapping((keyMapping) => 'name')}
             >
               {name}
             </h1>
@@ -143,6 +129,7 @@ export default function Page({ params }) {
               font-semibold
               text-gray-500
               '
+              onClick={() => setKeyMapping((keyMapping) => 'slogan')}
             >
               {slogan}
             </h2>
@@ -151,7 +138,7 @@ export default function Page({ params }) {
             {
               contact.map((item, index) => {
                 return (
-                  <ContactEdit key={index} data={item} />
+                  <ContactEdit key={index} data={item} onClick={() => setKeyMapping((keyMapping) => `${index}`)} />
                 )
               })
             }
@@ -166,7 +153,7 @@ export default function Page({ params }) {
             w-[98.5%]
             cursor-pointer
             '
-            onClick={handleAdd}
+              onClick={handleAdd}
             >
               +
             </div>
@@ -177,8 +164,9 @@ export default function Page({ params }) {
         <div className='
         w-full
         h-[85%]
-        bg-white
+        
         '>
+          {keyMapping != '-1' && <EditPanel keyMapping={keyMapping} setKeyMapping={setKeyMapping}/>}
         </div>
         <button className='
         bg-[#939cf1]
