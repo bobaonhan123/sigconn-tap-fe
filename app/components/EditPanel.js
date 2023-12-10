@@ -1,8 +1,8 @@
 'use client'
 import { Dosis } from "next/font/google";
-import Avatar from "./editComponent/avatar";
-import Name from "./editComponent/name";
-import Slogan from "./editComponent/slogan";
+import Avatar from "./editComponent/Avatar";
+import Name from "./editComponent/Name";
+import Slogan from "./editComponent/Slogan";
 import { useProfile } from "../store";
 import ContactEdit from "./editComponent/ContactEdit";
 import { useState, useEffect } from "react";
