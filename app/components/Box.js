@@ -7,7 +7,12 @@ import { useTagPopupStore } from "../store";
 export default function Box(props) {
   const { img, name, id } = props.data;
   let isSelected = props.isSelected;
-  const handleWrite=useTagPopupStore((state)=>state.toggle)
+  const toggleWrite = useTagPopupStore((state) => state.toggle)
+  const setUrl = useTagPopupStore((state) => state.setUrl)
+  const handleWrite = async () => {
+    await setUrl(hostname + '/' + id)
+    toggleWrite()
+  }
   return (
     <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer max-md:mx-2" onClick={props.click}>
       <img src={img} alt={name} className='h-[75%] w-full object-cover rounded-3xl' />

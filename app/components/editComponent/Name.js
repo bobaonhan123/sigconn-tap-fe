@@ -1,5 +1,11 @@
 'use client'
+import { useProfile } from "@/app/store"
 export default function Name() {
+    const name = useProfile((state) => state.name);
+    const updateName=useProfile((state)=>state.updateName);
+    const namechange=(e)=> {
+        updateName(e.target.value)
+    }
     return (
         <div className='h-[90%]
         w-full
@@ -17,7 +23,11 @@ export default function Name() {
             w-[80%]
             rounded-xl
             bg-[#cfefff]
-            '/>
+            max-md:w-full
+            '
+            value={name}
+            onChange={namechange}
+            />
         </div>
     )
 }

@@ -1,5 +1,11 @@
 'use client'
+import { useProfile } from "@/app/store"
 export default function Slogan() {
+    const slogan = useProfile((state) => state.slogan);
+    const updateSlogan= useProfile((state) => state.updateSlogan);
+    const sloganchange = (e) => {
+        updateSlogan(e.target.value)
+    }
     return (
         <div className='h-[90%]
         w-full
@@ -17,7 +23,11 @@ export default function Slogan() {
             w-[80%]
             rounded-xl
             bg-[#cfefff]
-            '/>
+            max-md:w-full
+            '
+            value={slogan}
+            onChange={sloganchange}
+            />
         </div>
     )
 }

@@ -26,7 +26,16 @@ export default function EditPanel({ setKeyMapping,keyMapping }) {
     return (
         <div className={dosis.className+` h-full
         w-full
-        flex flex-col`}>
+        flex flex-col
+        max-md:fixed
+        max-md:left-0
+        max-md:bg-[#ffffff]
+        max-md:border-2
+        max-md:rounded-md
+        max-md:w-[95vw]
+        max-md:left-[2%]
+        max-md:h-[80%]
+        `}>
             <div className='
             h-10%
             text-right

@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 
 export const useNamePopupStore = create((set) => ({
-    isVisible:false,
-    toggle:()=> {
-        set((state) => ( { isVisible: !state.isVisible }))
+    isVisible: false,
+    toggle: () => {
+        set((state) => ({ isVisible: !state.isVisible }))
     },
-    isChanged:false,
+    isChanged: false,
     change: () => {
         set((state) => ({ isChanged: !state.isChanged }))
     },
@@ -20,6 +20,10 @@ export const useTagPopupStore = create((set) => ({
     change: () => {
         set((state) => ({ isChanged: !state.isChanged }))
     },
+    url: "",
+    setUrl: (newUrl) => {
+        set((state) => ({ url: newUrl }))
+    },
 }))
 
 export const useProfile = create((set) => ({
@@ -33,4 +37,21 @@ export const useProfile = create((set) => ({
     addContact: (newContact) => set((prevState) => ({
         contact: [...prevState.contact, newContact],
     })),
+    editContactName: (index, newName) => set((prevState) => ({
+        contact: prevState.contact.map((contact, i) =>
+            i === index ? { ...contact, name: newName } : contact
+        ),
+    })),
+    editContactUrl: (index, newUrl) => set((prevState) => ({
+        contact: prevState.contact.map((contact, i) =>
+            i === index ? { ...contact, url: newUrl } : contact
+        ),
+    })),
+    updateName: (newName) => set((prevState) => ({
+        name: newName,
+    })),
+    updateSlogan: (newSlogan) => set((prevState) => ({
+        slogan: newSlogan,
+    })),
 }));
+

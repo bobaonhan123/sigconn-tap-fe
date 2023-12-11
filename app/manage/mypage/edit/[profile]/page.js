@@ -88,15 +88,17 @@ export default function Page({ params }) {
     const newData = data[parseInt(params.profile)];
     updateState(newData);
     console.log(name);
-  }, [params.profile, updateState, name]);
-  const [keyMapping,setKeyMapping]=useState('-1');
+  }, [params.profile, updateState]);
+  const [keyMapping, setKeyMapping] = useState('-1');
   return (
     <div className="h-[90vh] flex">
-      <div className=" w-[40%] ml-[4%] mt-[5%] h-full">
+      <div className=" w-[40%] ml-[4%] mt-[5%] h-full max-md:w-full">
         <div
           className={
             dosis.className +
-            " h-[80%] w-[80%] bg-white border-2 border-black rounded-2xl overflow-auto"
+            ` h-[80%] w-[80%] bg-white border-2 border-black rounded-2xl overflow-auto max-md:fixed 
+            max-md:w-[90vw]
+            max-md:left-[5%]`
           }
         >
           <div className="mb-5">
@@ -109,7 +111,7 @@ export default function Page({ params }) {
                           w-20 
                           h-20 mx-auto 
                           mt-10'
-              onClick={()=>setKeyMapping((keyMapping)=>'img')}
+              onClick={() => setKeyMapping((keyMapping) => 'img')}
             />
             <h1
               className='
@@ -166,7 +168,7 @@ export default function Page({ params }) {
         h-[85%]
         
         '>
-          {keyMapping != '-1' && <EditPanel keyMapping={keyMapping} setKeyMapping={setKeyMapping}/>}
+          {keyMapping != '-1' && <EditPanel keyMapping={keyMapping} setKeyMapping={setKeyMapping} />}
         </div>
         <button className='
         bg-[#939cf1]
@@ -177,8 +179,11 @@ export default function Page({ params }) {
         rounded-full
         mr-6
         ml-auto
+        max-md:fixed
+        max-md:bottom-2
+        max-md:left-[30vw]
         '>LƯU</button>
       </div>
-    </div>
+    </div >
   );
 }
