@@ -9,6 +9,6 @@ export const http = axios.create({
   baseURL: baseUrl,
   headers: {
     "Content-Type": "application/json",
-    "ngrok-skip-browser-warning":"1234"
+    "ngrok-skip-browser-warning": "1234"
   },
 });
