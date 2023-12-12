@@ -18,7 +18,8 @@ export default function EditPanel({ setKeyMapping,keyMapping }) {
         const newMapping = { ...mapping };
         contact.forEach((item, index) => {
             console.log(index);
-            newMapping[index.toString()] = <ContactEdit key={index} indexArr={index} />;
+            newMapping[index.toString()] = <ContactEdit key={index} indexArr={index}
+                setKeyMapping={setKeyMapping} />;
         });
 
         setMapping(newMapping);

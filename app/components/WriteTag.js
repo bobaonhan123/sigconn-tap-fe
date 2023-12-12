@@ -1,19 +1,20 @@
 'use client'
-import { useState } from "react"
-import { useTagPopupStore } from "../store"
+import { useEffect, useState, memo} from "react"
+import { useTagPopupStore,useSuccess } from "../store"
 import logo from "@/app/img/logo.png";
 import { http } from "../config/AxiosCFG"
 import Image from "next/image";
-export default function WriteTag() {
+function WriteTag() {
     const handleClose = useTagPopupStore((state) => state.toggle)
     const handleChange = useTagPopupStore((state) => state.change)
+    const displaySuccess = useSuccess((state) => state.showFor5Seconds)
     const url = useTagPopupStore((state) => state.url)
     const onWrite = async () => {
         try {
             const ndef = new window.NDEFReader();
-            console.log(url)
             await ndef.scan();
             await ndef.write({ records: [{ recordType: "url", data: url }] });
+            await displaySuccess();
             console.log(url)
             handleClose()
         } catch (error) {
@@ -41,3 +42,5 @@ export default function WriteTag() {
     </div>
     )
 }
+
+export default memo(WriteTag)

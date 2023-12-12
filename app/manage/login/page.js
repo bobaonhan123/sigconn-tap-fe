@@ -5,7 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { http } from "@/app/config/AxiosCFG";
 import Alert from "@/app/components/Alert";
+import {useLoadingStore} from "../../store"
 export default function Login() {
+  const setLoading = useLoadingStore((state)=>state.setLoading)
   const router = useRouter();
   const [username, setUsername] = useState("");
   function handleUsername(e) {
@@ -17,26 +19,31 @@ export default function Login() {
     setPassword(e.target.value);
   }
   async function handleLogin() {
+    setLoading(true)
     http.post(`auth/login?email=${username}&password=${password}`)
       .then((res) => res.data)
       .then((data) => {
         if (data.error == "Unauthorized") {
           console.log(data)
           setAlert(true)
+          setLoading(false)
         }
         else {
           console.log(data.access_token);
           if (typeof localStorage !== 'undefined') {
             localStorage.setItem("access-token", data.access_token);
           }
+          setLoading(false)
           router.push("/manage/mypage");
           // if (typeof window !== 'undefined') {
           //   window.location.pathname = '/manage/mypage'
           // }
+          
         }
       })
       .catch((error) => {
         setAlert(true)
+        setLoading(false)
       });
 
   }

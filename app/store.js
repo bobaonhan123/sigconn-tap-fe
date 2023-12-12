@@ -53,5 +53,23 @@ export const useProfile = create((set) => ({
     updateSlogan: (newSlogan) => set((prevState) => ({
         slogan: newSlogan,
     })),
+    deleteContact: (index) => set((prevState) => ({
+        contact: prevState.contact.filter((_, i) => i !== index),
+    })),
 }));
 
+
+export const useSuccess = create((set) => ({
+    isVisible: false,
+    showFor5Seconds: () => {
+        set({ isVisible: true });
+        setTimeout(() => {
+            set({ isVisible: false });
+        }, 5000);
+    },
+}));
+
+export const useLoadingStore = create((set) => ({
+    loading: false,
+    setLoading: (isLoading) => set({ loading: isLoading }),
+}));
