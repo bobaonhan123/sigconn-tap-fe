@@ -1,6 +1,7 @@
 'use client'
 import Box from "@/app/components/Box";
 import { useState } from "react";
+import { useLoadingStore } from "../../store"
 const data = [
   {
     id: 1,
@@ -62,8 +63,9 @@ const data = [
 ];
 
 export default function MyPage() {
+  const setLoading = useLoadingStore((state) => state.setLoading)
   const [option, setOption] = useState(-1);
-  
+  setLoading(false)
   console.log(option)
   return (
     <main className='pt-16 px-12' onClick={() => { setOption(-1) }}>

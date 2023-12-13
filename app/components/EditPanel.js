@@ -7,7 +7,7 @@ import { useProfile } from "../store";
 import ContactEdit from "./editComponent/ContactEdit";
 import { useState, useEffect } from "react";
 const dosis = Dosis({ subsets: ["latin"] });
-export default function EditPanel({ setKeyMapping,keyMapping }) {
+export default function EditPanel({ setKeyMapping, keyMapping }) {
     const [mapping, setMapping] = useState({
         img: <Avatar />,
         name: <Name />,
@@ -25,7 +25,7 @@ export default function EditPanel({ setKeyMapping,keyMapping }) {
         setMapping(newMapping);
     }, [contact]);
     return (
-        <div className={dosis.className+` h-full
+        <div className={dosis.className + ` h-full
         w-full
         flex flex-col
         max-md:fixed

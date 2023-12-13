@@ -33,7 +33,7 @@ export default function Login() {
           if (typeof localStorage !== 'undefined') {
             localStorage.setItem("access-token", data.access_token);
           }
-          setLoading(false)
+          
           router.push("/manage/mypage");
           // if (typeof window !== 'undefined') {
           //   window.location.pathname = '/manage/mypage'
