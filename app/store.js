@@ -32,7 +32,7 @@ export const useProfile = create((set) => ({
     slogan: '',
     img: '',
     contact: [],
-
+    editImg: (newImg) => set((prevState) => ({ img: newImg })),
     updateState: (newState) => set((prevState) => ({ ...prevState, ...newState })),
     addContact: (newContact) => set((prevState) => ({
         contact: [...prevState.contact, newContact],

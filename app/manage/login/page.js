@@ -18,6 +18,7 @@ export default function Login() {
   function handlePassword(e) {
     setPassword(e.target.value);
   }
+  
   async function handleLogin() {
     setLoading(true)
     http.post(`auth/login?email=${username}&password=${password}`)
@@ -33,7 +34,6 @@ export default function Login() {
           if (typeof localStorage !== 'undefined') {
             localStorage.setItem("access-token", data.access_token);
           }
-          
           router.push("/manage/mypage");
           // if (typeof window !== 'undefined') {
           //   window.location.pathname = '/manage/mypage'

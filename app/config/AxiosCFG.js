@@ -12,3 +12,11 @@ export const http = axios.create({
     "ngrok-skip-browser-warning": "1234"
   },
 });
+
+export const imgBaseUrl = "http://localhost:8001";
+export const httpFile = axios.create({
+  baseURL: imgBaseUrl,
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
