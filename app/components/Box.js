@@ -3,6 +3,7 @@
 import { hostname } from "../config/location";
 import Link from "next/link";
 import { useTagPopupStore } from "../store";
+import { imgBaseUrl } from "@/app/config/AxiosCFG";
 
 export default function Box(props) {
   const { img, name, id } = props.data;
@@ -15,7 +16,7 @@ export default function Box(props) {
   }
   return (
     <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer max-md:mx-2" onClick={props.click}>
-      <img src={img} alt={name} className='h-[75%] w-full object-cover rounded-3xl' />
+      <img src={imgBaseUrl+'?filename='+img} alt={name} className='h-[75%] w-full object-cover rounded-3xl' />
       <div className="h-[20%] w-[100%] mt-2 px-5">
         <h2 className="text-gray-800 font-semibold text-lg p-0">{name}</h2>
         <p className="text-gray-500 text-sm p-0">{hostname + '/' + id}</p>

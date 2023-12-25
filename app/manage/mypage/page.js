@@ -1,13 +1,14 @@
 'use client'
 import Box from "@/app/components/Box";
 import { useState } from "react";
-import { useLoadingStore } from "../../store"
+import { useLoadingStore } from "../../store";
+
 const data = [
   {
     id: 1,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -21,7 +22,7 @@ const data = [
     id: 2,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -35,7 +36,7 @@ const data = [
     id: 3,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -49,7 +50,7 @@ const data = [
     id: 4,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",

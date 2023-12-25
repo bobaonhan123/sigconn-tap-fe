@@ -3,6 +3,7 @@ import { Dosis } from "next/font/google";
 import ContactEdit from "@/app/components/ContactEdit";
 import { useProfile } from "@/app/store";
 import { useEffect, useState } from "react";
+import { imgBaseUrl } from "@/app/config/AxiosCFG";
 import EditPanel from "@/app/components/EditPanel";
 
 const dosis = Dosis({ subsets: ["latin"] });
@@ -11,7 +12,7 @@ const data = [
     id: 1,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -27,7 +28,7 @@ const data = [
     id: 2,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -43,7 +44,7 @@ const data = [
     id: 3,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -59,7 +60,7 @@ const data = [
     id: 4,
     name: "Hồ Sỹ Bảo Nhân",
     slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
+    img: "default.jpg",
     contact: [
       {
         name: "Facebook",
@@ -89,6 +90,15 @@ export default function Page({ params }) {
     updateState(newData);
     console.log(name);
   }, [params.profile, updateState]);
+  const handleSave = () => {
+    const info = {
+      name: name,
+      slogan: slogan,
+      img: img,
+      contact: contact,
+    };
+    console.log(info);
+  }
   const [keyMapping, setKeyMapping] = useState('-1');
   return (
     <div className="h-[90vh] flex">
@@ -103,7 +113,7 @@ export default function Page({ params }) {
         >
           <div className="mb-5">
             <img
-              src={img}
+              src={imgBaseUrl+'/?filename='+img}
               className='rounded-full
                           h-26 
                           w-26 
@@ -182,7 +192,8 @@ export default function Page({ params }) {
         max-md:fixed
         max-md:bottom-2
         max-md:left-[30vw]
-        '>LƯU</button>
+        '
+        onClick={handleSave}>LƯU</button>
       </div>
     </div >
   );
