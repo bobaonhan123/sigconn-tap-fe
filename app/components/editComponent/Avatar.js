@@ -40,9 +40,9 @@ export default function Avatar() {
             />
             <label
                 htmlFor="file"
-                className='mt-16 h-12 font-semibold w-64 h-64 rounded-xl bg-[#cfefff] flex items-center justify-center text-2xl'
+                className='mt-16 h-12 font-semibold w-64 h-64 rounded-xl bg-[#cfefff] flex items-center justify-center text-2xl cursor-pointer'
             >
-                Choose a file
+                Chọn ảnh
             </label>
         </div>
     );
