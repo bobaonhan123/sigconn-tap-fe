@@ -19,14 +19,14 @@ function Sidebar() {
   }
   useEffect(() => {
     http
-      .get("auth/name", {
+      .get("/name/", {
         headers: {
-          Authorization: "bearer " + token,
+          Authorization: "Token " + token,
         },
       })
       .then((data) => {
-        if (data.data.name != "")
-          setName(data.data.name)
+        if (data.data.username != "")
+          setName(data.data.username)
         else router.push("/manage/login");
       })
       .catch((error) => {

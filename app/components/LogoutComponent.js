@@ -14,7 +14,7 @@ export default function LogoutComponent() {
     return (
         <div className='flex flex-col h-9 absolute w-full
         '>
-            <div className='
+            {/* <div className='
             bg-[#ebebeb]
             py-4
             my-1
@@ -29,7 +29,7 @@ export default function LogoutComponent() {
             '
                 onClick={handleChangeName}>
                 Đổi tên
-            </div>
+            </div> */}
             <div className='
             bg-[#ebebeb]
             py-4

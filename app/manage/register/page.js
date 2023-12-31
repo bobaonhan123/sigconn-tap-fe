@@ -27,9 +27,9 @@ export default function Register() {
     }
 
     async function handleRegister() {
-      http.post(`auth/register`,{
+      http.post(`/register/`,{
         name:name,
-        email:username,
+        username:username,
         password:password,
         password_confirmation:reEnter
       })

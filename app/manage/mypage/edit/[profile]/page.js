@@ -1,79 +1,20 @@
 "use client";
 import { Dosis } from "next/font/google";
 import ContactEdit from "@/app/components/ContactEdit";
-import { useProfile } from "@/app/store";
+import { useProfile, useTagPopupStore } from "@/app/store";
 import { useEffect, useState } from "react";
-import { imgBaseUrl } from "@/app/config/AxiosCFG";
+import { http, imgBaseUrl } from "@/app/config/AxiosCFG";
 import EditPanel from "@/app/components/EditPanel";
+import { headers } from "@/next.config";
+import { hostname } from "@/app/config/location";
+import { useRouter } from "next/navigation";
 
 const dosis = Dosis({ subsets: ["latin"] });
-const data = [
-  {
-    id: 1,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "default.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan",
-      },
-      {
-        name: "Github",
-        url: "https://github.com/bobaonhan123",
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "default.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan",
-      },
-      {
-        name: "Github",
-        url: "https://github.com/bobaonhan123",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "default.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan",
-      },
-      {
-        name: "Github",
-        url: "https://github.com/bobaonhan123",
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "default.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan",
-      },
-      {
-        name: "Github",
-        url: "https://github.com/bobaonhan123",
-      },
-    ],
-  },
-];
+
 export default function Page({ params }) {
+  const router = useRouter();
+  const toggleWrite = useTagPopupStore((state) => state.toggle);
+  const setUrl = useTagPopupStore((state) => state.setUrl)
   const id = useProfile((state) => state.id);
   const name = useProfile((state) => state.name);
   const img = useProfile((state) => state.img);
@@ -85,9 +26,18 @@ export default function Page({ params }) {
     const newContact = { name: '<Nhập>', url: '' };
     addContact(newContact);
   }
+  let token = '';
+  if (typeof localStorage !== 'undefined') {
+    token = localStorage.getItem("access-token");
+  }
   useEffect(() => {
-    const newData = data[parseInt(params.profile)];
+    http.get(`/profile/list/${parseInt(params.profile)}`,{headers:{
+      Authorization: 'Token ' + token
+    }}).then((res) => {
+    const newData = res.data;
+
     updateState(newData);
+    })
     console.log(name);
   }, [params.profile, updateState]);
   const handleSave = () => {
@@ -97,6 +47,14 @@ export default function Page({ params }) {
       img: img,
       contact: contact,
     };
+    http.put(`/profile/edit/${id}`, info,{headers:{
+      Authorization: 'Token ' + token
+    }}).then((res) => {
+      setUrl(hostname + '/' + res.id)
+    }).then((res) => {
+      router.push('/manage/mypage')
+      toggleWrite()
+    })
     console.log(info);
   }
   const [keyMapping, setKeyMapping] = useState('-1');
@@ -130,6 +88,8 @@ export default function Page({ params }) {
               text-gray-700
               font-semibold
               uppercase
+              min-w-[50%px]
+              min-h-[2rem]
               '
               onClick={() => setKeyMapping((keyMapping) => 'name')}
             >
@@ -140,6 +100,8 @@ export default function Page({ params }) {
               text-center
               font-semibold
               text-gray-500
+              min-w-[50%]
+              min-h-[1.5rem]
               '
               onClick={() => setKeyMapping((keyMapping) => 'slogan')}
             >

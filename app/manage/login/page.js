@@ -21,7 +21,10 @@ export default function Login() {
   
   async function handleLogin() {
     setLoading(true)
-    http.post(`auth/login?email=${username}&password=${password}`)
+    http.post(`/login/`, {
+      username: username,
+      password: password,
+    })
       .then((res) => res.data)
       .then((data) => {
         if (data.error == "Unauthorized") {
@@ -30,9 +33,9 @@ export default function Login() {
           setLoading(false)
         }
         else {
-          console.log(data.access_token);
+          console.log(data.token);
           if (typeof localStorage !== 'undefined') {
-            localStorage.setItem("access-token", data.access_token);
+            localStorage.setItem("access-token", data.token);
           }
           router.push("/manage/mypage");
           // if (typeof window !== 'undefined') {

@@ -8,16 +8,16 @@ export default function Manage() {
   if (typeof localStorage !== 'undefined') {
     token = localStorage.getItem('access-token');
   }
-  http.get("auth/name", {
+  http.get("/name/", {
     headers: {
-      'Authorization': 'bearer ' + token
+      'Authorization': 'Token ' + token
     }
   }).then((data) => {
     // if (typeof window !== 'undefined') {
     //   window.location.pathname = '/manage/mypage'
     // }
     console.log(data)
-    if('name' in data.data) {
+    if('username' in data.data) {
     router.push('/manage/mypage');
     }
     else router.push('/manage/login');

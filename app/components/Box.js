@@ -3,8 +3,8 @@
 import { hostname } from "../config/location";
 import Link from "next/link";
 import { useTagPopupStore } from "../store";
-import { imgBaseUrl } from "@/app/config/AxiosCFG";
-
+import { http, imgBaseUrl } from "@/app/config/AxiosCFG";
+import { useReloadBoxes } from "../store";
 export default function Box(props) {
   const { img, name, id } = props.data;
   let isSelected = props.isSelected;
@@ -13,6 +13,18 @@ export default function Box(props) {
   const handleWrite = async () => {
     await setUrl(hostname + '/' + id)
     toggleWrite()
+  }
+  let token = '';
+  if (typeof localStorage !== 'undefined') {
+    token = localStorage.getItem("access-token");
+  }
+  const setReloadBoxes = useReloadBoxes((state) => state.setChanged)
+  const handleDelete = () => {
+    http.delete(`/profile/delete/${id}/`, {headers:{
+      Authorization: 'Token ' + token
+    }}).then((res) => {
+      setReloadBoxes()
+    })
   }
   return (
     <div className="h-[35vh] bg-[#cfefff] mx-6 rounded-3xl cursor-pointer max-md:mx-2" onClick={props.click}>
@@ -39,7 +51,7 @@ export default function Box(props) {
         <Link href={'/manage/mypage/edit/' + id}
           className={`text-white w-[55%] bg-[#737373] text-center rounded-full py-[3%]`}><div className="">Sửa</div></Link>
         <button
-          className={`text-white w-[55%] bg-[#5271ff] text-center rounded-full py-[3%]`}>Xóa</button>
+          className={`text-white w-[55%] bg-[#5271ff] text-center rounded-full py-[3%]`} onClick={handleDelete}>Xóa</button>
         <button
           className='text-white w-[55%] bg-[#ff5757] text-center rounded-full py-[3%]'
           onClick={handleWrite}>Ghi thẻ</button>

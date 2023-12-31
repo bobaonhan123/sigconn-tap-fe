@@ -73,3 +73,8 @@ export const useLoadingStore = create((set) => ({
     loading: false,
     setLoading: (isLoading) => set({ loading: isLoading }),
 }));
+
+export const useReloadBoxes = create((set) => ({
+    isChanged: false,
+    setChanged: () => set((state) => ({ isChanged: !state.isChanged })),
+}));
