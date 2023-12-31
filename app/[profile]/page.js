@@ -1,69 +1,18 @@
 import Contact from "../components/Contact";
 import { Dosis } from "next/font/google";
+import { serverAxios } from "../config/AxiosCFG";
 const dosis=Dosis({ subsets: ['latin'] });
-const data = [
-  {
-    id: 1,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan"
-      }, {
-        name: "Github",
-        url: "https://github.com/bobaonhan123"
-      }
-    ]
-  }, {
-    id: 2,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan"
-      }, {
-        name: "Github",
-        url: "https://github.com/bobaonhan123"
-      }
-    ]
-  }, {
-    id: 3,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan"
-      }, {
-        name: "Github",
-        url: "https://github.com/bobaonhan123"
-      }
-    ]
-  }, {
-    id: 4,
-    name: "Hồ Sỹ Bảo Nhân",
-    slogan: "Một thằng IT biết cài win và sửa mạng",
-    img: "https://www.w3schools.com/tags/img_girl.jpg",
-    contact: [
-      {
-        name: "Facebook",
-        url: "https://www.facebook.com/hosybaonhan"
-      }, {
-        name: "Github",
-        url: "https://github.com/bobaonhan123"
-      }
-    ]
-  }
-];
 
-export default function Page({ params }) {
-  const info = data[params.profile]
 
+export async function getData(params) {
+  // Fetch data from external API
+  const res = await serverAxios.get(`/profile/list/${params.profile}`)
+  return res.data;
+}
+
+export default async function Page({ params }) {
+  let info = await getData(params);
+  
   return <div className={dosis.className}>
     <div className="mb-5">
       
